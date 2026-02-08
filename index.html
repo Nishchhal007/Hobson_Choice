@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Be Honest 😏</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #dbe6f6, #c5796d);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont;
+      padding: 16px;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 24px 20px 30px;
+      border-radius: 18px;
+      text-align: center;
+      width: 100%;
+      max-width: 360px;
+      box-shadow: 0 20px 45px rgba(0,0,0,0.25);
+      position: relative;
+    }
+
+    h2 {
+      margin-bottom: 24px;
+      font-weight: 600;
+      font-size: 1.2rem;
+    }
+
+    .btns {
+      position: relative;
+      height: 120px;
+    }
+
+    button {
+      padding: 12px 22px;
+      font-size: 16px;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    #yesBtn {
+      background: #ff4d6d;
+      color: white;
+    }
+
+    #noBtn {
+      background: #adb5bd;
+      color: #222;
+      position: absolute;
+      left: 50%;
+      top: 60px;
+      transform: translateX(-50%);
+      transition: left 0.2s ease, top 0.2s ease;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h2>Are you stalking me on Insta? 👀</h2>
+
+    <div class="btns">
+      <button id="yesBtn">Yes 😳</button>
+      <button id="noBtn">No 🙄</button>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+
+    function escape() {
+      const margin = 10;
+      const rect = noBtn.getBoundingClientRect();
+
+      const maxX = window.innerWidth - rect.width - margin;
+      const maxY = window.innerHeight - rect.height - margin;
+
+      let x = Math.random() * maxX;
+      let y = Math.random() * maxY;
+
+      x = Math.max(margin, Math.min(x, maxX));
+      y = Math.max(margin, Math.min(y, maxY));
+
+      // Move relative to viewport
+      noBtn.style.position = "fixed";
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    // Desktop
+    noBtn.addEventListener("mouseenter", escape);
+
+    // Mobile
+    noBtn.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      escape();
+    });
+
+    document.getElementById("yesBtn").addEventListener("click", () => {
+      alert("Mujhe pata tha Ab screenshot le liya.");
+    });
+  </script>
+
+</body>
+</html>
